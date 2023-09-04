@@ -1,0 +1,22 @@
+﻿@model Blog.Models.User;
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <div class="row">
+        <form asp-action="Login" class="align-items-center">
+            <div>
+                <label asp-for="EmailAddress"></label>
+                <input asp-for="EmailAddress" />
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+            </div>
+            <div>
+                <button>Login</button>
+            </div>
+        </form>
+    </div>
+</div>
