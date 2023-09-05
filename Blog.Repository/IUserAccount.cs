@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace Blog.Repository
 {
-    public interface IAccount
+    public class IUserAccount
     {
-        string Register(User user);
+        //string Register(User user);
         //void GetUserInfo();
+        //To Get Token
+        public User GetUserForLogin(string password, string email);
     }
 }

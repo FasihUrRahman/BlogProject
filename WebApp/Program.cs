@@ -1,4 +1,6 @@
 using Blog.Data;
+using Blog.Repository;
+using Blog.Repository.Implimentation;
 using Microsoft.AspNetCore.Connections;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +12,7 @@ builder.Services.AddDbContext<BlogContext>(options =>
     ServiceLifetime.Transient);
 
 
-
+builder.Services.AddTransient<IUserAccount, UserAccountRepository>(p => new UserAccountRepository(builder.Services.BuildServiceProvider().GetService<BlogContext>()));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
