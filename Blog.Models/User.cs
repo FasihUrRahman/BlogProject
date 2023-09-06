@@ -13,9 +13,9 @@ namespace Blog.Models
         public string EmailAddress { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public string IsConfirmed { get; set; }
+        public bool IsConfirmed { get; set; }
         public string AccessToken { get; set; }
-        public virtual UserRole Role { get; set; }
+        public virtual UserRole UserRole { get; set; }
         public int UserRoleId { get; set; } 
 
     }

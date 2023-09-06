@@ -1,0 +1,47 @@
+﻿@model Blog.Models.User;
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row w-25">
+        <form asp-action="Register" class="align-items-center">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="input-group">
+                <label asp-for="Name" class="form-label mx-2"></label>
+                <input asp-for="Name" type="email" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="input-group my-5">
+                <label asp-for="EmailAddress" class="form-label mx-2"></label>
+                <input asp-for="EmailAddress" type="email" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="input-group my-5">
+                <label asp-for="Password" class="form-label mx-2"></label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="input-group">
+                <label asp-for="PhoneNumber" class="form-label mx-2"></label>
+                <input asp-for="PhoneNumber" type="email" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            @if (string.IsNullOrEmpty(ViewBag.Error))
+            {
+                <p class="text-danger">@ViewBag.Error</p>
+            }
+            <div class="input-group my-5">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

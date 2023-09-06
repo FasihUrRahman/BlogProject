@@ -73,7 +73,8 @@ namespace Blog.Data.Migrations
                     EmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsConfirmed = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    AccessToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserRoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

@@ -189,9 +189,8 @@ namespace Blog.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IsConfirmed")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -299,13 +298,13 @@ namespace Blog.Data.Migrations
 
             modelBuilder.Entity("Blog.Models.User", b =>
                 {
-                    b.HasOne("Blog.Models.UserRole", "Role")
+                    b.HasOne("Blog.Models.UserRole", "UserRole")
                         .WithMany()
                         .HasForeignKey("UserRoleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Role");
+                    b.Navigation("UserRole");
                 });
 #pragma warning restore 612, 618
         }

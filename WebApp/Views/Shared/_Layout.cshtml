@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@using Blog.Models;
+@using Blog.Data;
+@inject BlogContext db;
+@{
+    string accessToken = Context.Request.Cookies["user-access-token"];
+    User user = new User();
+    if (!string.IsNullOrEmpty(accessToken))
+    {
+        user = db.Users.Where(x => x.AccessToken.Equals(accessToken)).FirstOrDefault();
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,9 +37,20 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                        </li>
+                        @if(user.UserRoleId == 0)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout(@user.Name)</a>
+                            </li>
+                        }
+
+                        
                     </ul>
                 </div>
             </div>
