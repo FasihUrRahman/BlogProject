@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Repository.Implimentation 
 {
-    public class UserAccountRepository : IUserAccount
+    public class UserAccountRepository : IUserAccount    
     {
         private readonly BlogContext _db;
         public UserAccountRepository(BlogContext db)
