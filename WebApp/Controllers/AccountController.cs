@@ -58,7 +58,7 @@ namespace WebApp.Controllers
         public IActionResult Logout()
         {
             Response.Cookies.Delete("user-access-token");
-            return Redirect("/Home/Index");
+            return Redirect("/Account/Login");
         }
     }
 }
