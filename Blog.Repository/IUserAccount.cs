@@ -12,6 +12,7 @@ namespace Blog.Repository
         //string Register(User user);
         //void GetUserInfo();
         //To Get Token
-        public User GetUserForLogin(string email, string password);
+        User GetUserForLogin(string email, string password);
+        string Register(User user);
     }
 }

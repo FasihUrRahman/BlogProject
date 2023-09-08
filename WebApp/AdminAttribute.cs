@@ -24,7 +24,7 @@ namespace WebApp
                 {
                     context.Result = new RedirectToPageResult("Account/Login");
                 }
-                context.Result = new RedirectToPageResult("Home/index");
+                context.Result = new RedirectToPageResult("Home/Index");
             }
             else
             {

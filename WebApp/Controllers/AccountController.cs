@@ -1,6 +1,7 @@
 ﻿using Blog.Models;
 using Blog.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 
 namespace WebApp.Controllers
@@ -28,15 +29,23 @@ namespace WebApp.Controllers
             string password = data["Password"];
 
             var dbUser = _account.GetUserForLogin(email, password);
-            if(dbUser != null)
+            if (dbUser != null)
             {
-                //Expire Session After 30 Days
-                CookieOptions options = new CookieOptions();
-                options.Expires = DateTime.UtcNow.AddDays(30);
-                Response.Cookies.Append("user-access-token",dbUser.AccessToken,options);
-                return Redirect("/Home/Index");
+                if (dbUser.IsConfirmed == true)
+                {
+                    //Expire Session After 30 Days
+                    CookieOptions options = new CookieOptions();
+                    options.Expires = DateTime.UtcNow.AddDays(30);
+                    Response.Cookies.Append("user-access-token", dbUser.AccessToken, options);
+                    return Redirect("/Home/Index");
+                }
+                else
+                {
+                    ViewBag.Error = "You Are Not Verified Yet!";
+                    return View();
+                }
             }
-            ViewBag.Error = "Fuck Of Bitch, This isn't You!";
+            ViewBag.Error = "Wrong Email Or Password";
             return View();
         }
         [HttpGet]
@@ -47,13 +56,29 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Register(User user)
         {
-            if (string.IsNullOrEmpty(user.EmailAddress) && string.IsNullOrEmpty(user.Password))
+            string confermationToken = _account.Register(user);
+            //If Values are No Correct
+            if (string.IsNullOrEmpty(confermationToken))
             {
-                user.UserRoleId = 1;
-                user.IsConfirmed = false;
-
+                ViewBag.Error = "Error Occoured";
+                return View();
             }
-            return View();
+            //If Values Are Correct Then User Will Register and Login to Web App
+            else
+            {
+                if(user.IsConfirmed == true)
+                {
+                    //Expire Session After 30 Days
+                    CookieOptions options = new CookieOptions();
+                    options.Expires = DateTime.UtcNow.AddDays(30);
+                    Response.Cookies.Append("user-access-token", user.AccessToken, options);
+                    return Redirect("/Home/Index");
+                }
+                else
+                {
+                    return Redirect("/Account/Login");
+                }
+            }
         }
         public IActionResult Logout()
         {

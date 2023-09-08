@@ -14,6 +14,7 @@ namespace Blog.Models
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
         public bool IsConfirmed { get; set; }
+        public DateTime JoinedOn { get; set; }
         public string AccessToken { get; set; }
         public virtual UserRole UserRole { get; set; }
         public int UserRoleId { get; set; } 
