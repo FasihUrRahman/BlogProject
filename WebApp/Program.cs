@@ -11,8 +11,9 @@ builder.Services.AddDbContext<BlogContext>(options =>
     },
     ServiceLifetime.Transient);
 
-
+//Creating Object of Blog.Repostory(This have to be Created when we willing to use that repostory in Our Project)
 builder.Services.AddTransient<IUserAccount, UserAccountRepository>(p => new UserAccountRepository(builder.Services.BuildServiceProvider().GetService<BlogContext>()));
+builder.Services.AddTransient<IUser, UserRepository>(p => new UserRepository(builder.Services.BuildServiceProvider().GetService<BlogContext>()));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
