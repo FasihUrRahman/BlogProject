@@ -22,13 +22,12 @@ namespace WebApp
                 var result = db.Users.Where(x => x.AccessToken.Equals(accessToken) && x.UserRole.Name == "Admin").Any();
                 if (!result)
                 {
-                    context.Result = new RedirectToPageResult("Account/Login");
+                    context.Result = new RedirectResult("/Account/Login");
                 }
-                context.Result = new RedirectToPageResult("Home/Index");
             }
             else
             {
-                context.Result = new RedirectToPageResult("Account/Login");
+                context.Result = new RedirectResult("/Account/Login");
             }
 
         }

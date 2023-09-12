@@ -66,6 +66,11 @@ namespace WebApp.Controllers
             //If Values Are Correct Then User Will Register and Login to Web App
             else
             {
+                if(confermationToken == "Error")
+                {
+                    ViewBag.Error = "This Email or Phone Number is Already Registered";
+                    return View();
+                }
                 if(user.IsConfirmed == true)
                 {
                     //Expire Session After 30 Days

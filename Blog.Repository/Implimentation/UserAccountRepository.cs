@@ -23,14 +23,23 @@ namespace Blog.Repository.Implimentation
 
         public string Register(User user)
         {
-            user.UserRoleId = 2;//this will setup role of user who will register
-            user.IsConfirmed = false;//this will not allow user to login without permission of admin
-            user.JoinedOn = DateTime.UtcNow.AddHours(5); //This will add date of today and hour of the user when they register
-            user.AccessToken = Guid.NewGuid().ToString() + DateTime.UtcNow.Ticks; //Generate AccessToken Using Ticks: It will change date time in number
+            var isUserEmail = _db.Users.FirstOrDefault(x => x.EmailAddress == user.EmailAddress);
+            var isUserPhone = _db.Users.FirstOrDefault(x => x.PhoneNumber == user.PhoneNumber);
+            if (isUserEmail == null && isUserPhone == null)
+            {
+                user.UserRoleId = 2;//this will setup role of user who will register
+                user.IsConfirmed = true;//this will not allow user to login without permission of admin
+                user.JoinedOn = DateTime.UtcNow.AddHours(5); //This will add date of today and hour of the user when they register
+                user.AccessToken = Guid.NewGuid().ToString() + DateTime.UtcNow.Ticks; //Generate AccessToken Using Ticks: It will change date time in number
 
-            _db.Users.Add(user); //This will add data in Database
-            _db.SaveChanges(); //And Then Save Changes
-            return user.AccessToken + user.JoinedOn.Ticks.ToString();
+                _db.Users.Add(user); //This will add data in Database
+                _db.SaveChanges(); //And Then Save Changes
+                return user.AccessToken + user.JoinedOn.Ticks.ToString();
+            }
+            else
+            {
+                return "Error";
+            }
         }
     }
 }
