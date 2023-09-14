@@ -2,6 +2,7 @@
 
     @{
         ViewData["Title"] = "User Roles";
+        int i = 0;
     }
     <h1>New Roles</h1>
     @* <p><a asp-controller="" asp-action=""></a></p> *@
@@ -29,6 +30,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6">
+            <a class="btn btn-info" asp-action="AddEditRole" asp-controller="User">Create New</a>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6">
             <table class="table">
                 <thead>
                     <tr>
@@ -43,7 +48,7 @@
                         <tr>
                             <td>@Html.DisplayFor(modelitem=> item.Id)</td>
                             <td>@Html.DisplayFor(modelitem=> item.Name)</td>
-                            <td><a asp-action="" asp-controller="">Update</a> | <a asp-action="" asp-controller="">Delete</a></td>
+                                <td><a asp-action="AddEditRole" asp-controller="User" asp-route-Id="@item.Id">Edit</a> | <a asp-action="DeleteRole" asp-controller="User" asp-route-Id="@item.Id">Delete</a></td>
                         </tr>
                     }
                 </tbody>

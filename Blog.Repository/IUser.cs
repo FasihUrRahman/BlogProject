@@ -11,5 +11,8 @@ namespace Blog.Repository
     {
         //To Get Roles From DB
         List<UserRole> GetRoles();
+        UserRole GetRole(int id);
+        void AddEditRole(UserRole userRole);
+        void DeleteRole(int id);
     }
 }

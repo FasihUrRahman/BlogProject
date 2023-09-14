@@ -16,6 +16,25 @@ namespace Blog.Repository.Implimentation
             _db = db;
         }
 
+        public void AddEditRole(UserRole userRole)
+        {
+            _db.UsersRole.Update(userRole);
+            _db.SaveChanges();
+        }
+
+        public void DeleteRole(int id)
+        {
+            UserRole userRoleId = _db.UsersRole.Where(x => x.Id.Equals(id)).FirstOrDefault();
+            _db.Remove(userRoleId);
+            _db.SaveChanges();
+            
+        }
+
+        public UserRole GetRole(int id)
+        {
+            return _db.UsersRole.Where(x=> x.Id == id).FirstOrDefault();
+        }
+
         public List<UserRole> GetRoles()
         {
             return _db.UsersRole.ToList();

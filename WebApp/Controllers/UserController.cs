@@ -1,4 +1,5 @@
-﻿using Blog.Repository;
+﻿using Blog.Models;
+using Blog.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers
@@ -17,6 +18,23 @@ namespace WebApp.Controllers
         public IActionResult Roles()
         {
             return View(_user.GetRoles());
+        }
+        [HttpGet]
+        public IActionResult AddEditRole(int id=0)
+        {
+            return View(_user.GetRole(id));
+        }
+        [HttpPost]
+        public IActionResult AddEditRole(UserRole userRole)
+        {
+            _user.AddEditRole(userRole);
+            return RedirectToAction("Roles");
+        }
+        [HttpGet]
+        public IActionResult DeleteRole(int id)
+        {
+            _user.DeleteRole(id);
+            return RedirectToAction("Roles");
         }
     }
 }
