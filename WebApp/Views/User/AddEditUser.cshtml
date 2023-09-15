@@ -40,7 +40,7 @@
                 </div>
                 <div class="mb-3">
                     <label asp-for="UserRole" class="form-label">User Role</label>
-                    <p>ADmin</p>
+                    <input asp-for="UserRole.Name" type="text" class="form-control" disabled />
                     <span asp-validation-for="UserRole" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
@@ -48,11 +48,7 @@
                     <input asp-for="UserRoleId" type="text" class="form-control">
                     <span asp-validation-for="UserRole" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="AccessToken" class="form-label">Access Token</label>
-                    <input asp-for="AccessToken" type="text" class="form-control" disabled>
-                    <span asp-validation-for="AccessToken" class="text-danger"></span>
-                </div>
+                <input asp-for="AccessToken" type="text" class="form-control" hidden>
                 @if (!string.IsNullOrEmpty(ViewBag.Error))
                 {
                     <p class="text-danger">@ViewBag.Error</p>
