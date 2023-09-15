@@ -10,9 +10,15 @@ namespace Blog.Repository
     public interface IUser
     {
         //To Get Roles From DB
+        //User Role Methods
         List<UserRole> GetRoles();
         UserRole GetRole(int id);
         void AddEditRole(UserRole userRole);
         void DeleteRole(int id);
+        //To Get Users From DB
+        //Users Mehtods
+        List<User> GetUsers();
+        User GetUser(int id);
+        void AddEditUser(User user);
     }
 }

@@ -13,6 +13,7 @@ namespace WebApp.Controllers
         {
             _user = user;
         }
+        /*--------------User Roles--------------*/
         [Admin]
         [HttpGet]
         public IActionResult Roles()
@@ -35,6 +36,24 @@ namespace WebApp.Controllers
         {
             _user.DeleteRole(id);
             return RedirectToAction("Roles");
+        }
+        /*--------------Users--------------*/
+        [Admin]
+        [HttpGet]
+        public IActionResult Users()
+        {
+            return View(_user.GetUsers());
+        }
+        [HttpGet]
+        public IActionResult AddEditUser(int id = 0)
+        {
+            return View(_user.GetUser(id));
+        }
+        [HttpPost]
+        public IActionResult AddEditUser(User user)
+        {
+            _user.AddEditUser(user);
+            return RedirectToAction("Users");
         }
     }
 }

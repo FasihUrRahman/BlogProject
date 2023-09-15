@@ -1,5 +1,6 @@
 ﻿using Blog.Data;
 using Blog.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,22 @@ namespace Blog.Repository.Implimentation
         public List<UserRole> GetRoles()
         {
             return _db.UsersRole.ToList();
+        }
+
+        public List<User> GetUsers()
+        {
+            return _db.Users.Include(x=>x.UserRole).ToList();
+        }
+
+        public User GetUser(int id)
+        {
+            return _db.Users.Where(x => x.Id == id).Include(x=> x.UserRole).FirstOrDefault();
+        }
+
+        public void AddEditUser(User user)
+        {
+            _db.Users.Update(user);
+            _db.SaveChanges();
         }
     }
 }
