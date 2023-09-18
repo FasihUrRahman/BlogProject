@@ -74,6 +74,7 @@ namespace Blog.Data.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    JoinedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AccessToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserRoleId = table.Column<int>(type: "int", nullable: false)
                 },

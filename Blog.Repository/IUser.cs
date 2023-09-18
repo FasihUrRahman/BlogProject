@@ -20,5 +20,6 @@ namespace Blog.Repository
         List<User> GetUsers();
         User GetUser(int id);
         void AddEditUser(User user);
+        void DeleteUser(int id);
     }
 }

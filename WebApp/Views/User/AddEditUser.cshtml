@@ -21,7 +21,6 @@
                 <div class="mb-3">
                     <label asp-for="Password" class="form-label">Password</label>
                     <input asp-for="Password" type="text" class="form-control">
-                    <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
@@ -29,8 +28,8 @@
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <label asp-for="IsConfirmed" class="form-label">Active</label>
-                    <input asp-for="IsConfirmed" type="checkbox">
+                    <label asp-for="IsConfirmed" class="form-check-label">Active</label>
+                    <input asp-for="IsConfirmed" type="checkbox" class="form-check-input">
                     <span asp-validation-for="IsConfirmed" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
@@ -40,15 +39,9 @@
                 </div>
                 <div class="mb-3">
                     <label asp-for="UserRole" class="form-label">User Role</label>
-                    <input asp-for="UserRole.Name" type="text" class="form-control" disabled />
-                    <span asp-validation-for="UserRole" class="text-danger"></span>
+                    <select asp-for="UserRoleId" asp-items="@ViewBag.AllRoles" class="form-control"></select>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="UserRoleId" class="form-label">User Role</label>
-                    <input asp-for="UserRoleId" type="text" class="form-control">
-                    <span asp-validation-for="UserRole" class="text-danger"></span>
-                </div>
-                <input asp-for="AccessToken" type="text" class="form-control" hidden>
+                <input asp-for="AccessToken" type="hidden" class="form-control">
                 @if (!string.IsNullOrEmpty(ViewBag.Error))
                 {
                     <p class="text-danger">@ViewBag.Error</p>

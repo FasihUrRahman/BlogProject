@@ -1,6 +1,7 @@
 ﻿using Blog.Models;
 using Blog.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebApp.Controllers
 {
@@ -47,12 +48,21 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult AddEditUser(int id = 0)
         {
+            //ViewBag is Help To Save Data Here It Getting Roles From DB
+            ViewBag.AllRoles = new SelectList(_user.GetRoles().ToList(), "Id", "Name");
             return View(_user.GetUser(id));
         }
         [HttpPost]
         public IActionResult AddEditUser(User user)
         {
             _user.AddEditUser(user);
+            return RedirectToAction("Users");
+        }
+        //DeleteUser
+        [HttpGet]
+        public IActionResult DeleteUser(int id)
+        {
+            _user.DeleteUser(id);
             return RedirectToAction("Users");
         }
     }

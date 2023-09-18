@@ -4,6 +4,7 @@
 @{
     string accessToken = Context.Request.Cookies["user-access-token"];
     User user = new User();
+    
     if (!string.IsNullOrEmpty(accessToken))
     {
         user = db.Users.Where(x => x.AccessToken.Equals(accessToken)).FirstOrDefault();
