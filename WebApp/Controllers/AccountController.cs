@@ -27,7 +27,6 @@ namespace WebApp.Controllers
             //Get Data Form Users
             string email = data["EmailAddress"];
             string password = data["Password"];
-
             var dbUser = _account.GetUserForLogin(email, password);
             if (dbUser != null)
             {
