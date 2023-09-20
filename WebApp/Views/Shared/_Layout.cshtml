@@ -4,7 +4,6 @@
 @{
     string accessToken = Context.Request.Cookies["user-access-token"];
     User user = new User();
-    
     if (!string.IsNullOrEmpty(accessToken))
     {
         user = db.Users.Where(x => x.AccessToken.Equals(accessToken)).FirstOrDefault();
@@ -50,11 +49,10 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-danger" asp-area="" asp-controller="Account" asp-action="Logout">Logout(<span class="text-dark">@user.Name</span>)</a>
+                                <a class="nav-link text-danger" asp-area="" asp-controller="Account" asp-action="Logout">
+                                    Logout(<span class="text-dark">@user.Name</span>)</a>
                             </li>
                         }
-
-                        
                     </ul>
                 </div>
             </div>
