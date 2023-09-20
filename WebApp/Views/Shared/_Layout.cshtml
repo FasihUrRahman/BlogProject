@@ -37,7 +37,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @if(user.UserRoleId == 0)
+                        @if (user.UserRoleId == 0)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
@@ -45,15 +45,15 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
                             </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-danger" asp-area="" asp-controller="Account" asp-action="Logout">
-                                    Logout(<span class="text-dark">@user.Name</span>)</a>
-                            </li>
-                        }
+                        }   
                     </ul>
+                    @if(user.UserRoleId > 0){
+                        <div class="d-flex">
+                            <a class="nav-link text-danger" asp-area="" asp-controller="Account" asp-action="Logout">
+                            Logout(<span class="text-dark">@user.Name</span>)
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
         </nav>
