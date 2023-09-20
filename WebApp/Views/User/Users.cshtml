@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Users";
+    string accessToken = Context.Request.Cookies["user-access-token"];
 }
 <h1>Users</h1>
 <div class="container">
@@ -37,8 +38,17 @@
                                 <td>@Html.DisplayFor(modelitem=> item.IsConfirmed)</td>
                                 <td>@Html.DisplayFor(modelitem=> item.JoinedOn)</td>
                                 <td>@Html.DisplayFor(modelitem=> item.UserRole.Name)</td>
-                                <td><a asp-action="AddEditUser" asp-controller="User" asp-route-Id="@item.Id">Edit</a> | <a asp-action="DeleteUser" asp-controller="User" asp-route-Id="@item.Id">Delete</a></td>
+                                <td><a asp-action="AddEditUser" asp-controller="User" asp-route-Id="@item.Id" class="btn btn-info">Edit</a> 
+                                    @if(accessToken != item.AccessToken)
+                                    {
+                                         <a asp-action="DeleteUser" asp-controller="User" asp-route-Id="@item.Id" class="btn btn-danger">Delete</a>
+                                    }
+                                    </td>
                             </tr>
+                        }
+                        @if (!string.IsNullOrEmpty(ViewBag.Error))
+                        {
+                            <p class="text-danger">@ViewBag.Error</p>
                         }
                     </tbody>
                 </table>

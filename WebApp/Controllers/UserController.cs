@@ -62,8 +62,8 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult DeleteUser(int id)
         {
-            _user.DeleteUser(id);
-            return RedirectToAction("Users");
+                _user.DeleteUser(id);
+                return RedirectToAction("Users");
         }
     }
 }
