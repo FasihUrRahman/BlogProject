@@ -1,7 +1,8 @@
 ﻿@model Blog.Models.Post;
+@using Blog.Models;
 @{
     ViewData["Title"] = "Add or Edit Role";
-
+    User user = new User();
 }
 
 <div class="container">
@@ -33,8 +34,8 @@
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <label asp-for="User.Name" class="form-label">Author</label>
-                    <input asp-for="User.Name" type="text" class="form-control" disabled>
+                    <label asp-for="User" class="form-label">Author</label>
+                    <input asp-for="User.Name" value="@user.Name" type="text" class="form-control" disabled>
                     <span asp-validation-for="User.Name" class="text-danger"></span>
                 </div>
                 <div class="mb-3">

@@ -8,9 +8,11 @@ namespace WebApp.Controllers
     public class PostController : Controller
     {
         private readonly IPost _post;
-        public PostController(IPost post)
+        private readonly IPost _user;
+        public PostController(IPost post, IPost user)
         {
             _post = post;
+            _user = user;
         }
         //------Categories Methods------//
 
