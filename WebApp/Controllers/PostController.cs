@@ -1,6 +1,7 @@
 ﻿using Blog.Models;
 using Blog.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebApp.Controllers
 {
@@ -55,6 +56,13 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult DetailsPost(int id)
         {
+            return View(_post.GetPost(id));
+        }
+        
+        [HttpGet]
+        public IActionResult AddEditPost(int id)
+        {
+            ViewBag.AllCategories = new SelectList(_post.GetCategories().ToList(), "Id", "Name");
             return View(_post.GetPost(id));
         }
     }
